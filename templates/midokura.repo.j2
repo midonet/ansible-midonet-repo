@@ -1,0 +1,20 @@
+[midonet]
+name=MidoNet
+baseurl=http://repo.midonet.org/midonet/v{{ midonet_version }}/RHEL/{{ ansible_distribution_version.split(".")[0] }}/{{ midonet_release | default('stable') }}/
+enabled=1
+gpgcheck=1
+gpgkey=http://repo.midonet.org/RPM-GPG-KEY-midokura
+
+[midonet-openstack-integration]
+name=MidoNet OpenStack Integration
+baseurl=http://repo.midonet.org/openstack-{{ openstack_version }}/RHEL/{{ ansible_distribution_version.split(".")[0] }}/{{ plugin_release | default('stable') }}/
+enabled=1
+gpgcheck=1
+gpgkey=http://repo.midonet.org/RPM-GPG-KEY-midokura
+
+[midonet-misc]
+name=MidoNet 3rd Party Tools and Libraries
+baseurl=http://repo.midonet.org/misc/RHEL/{{ ansible_distribution_version.split(".")[0] }}/misc/
+enabled=1
+gpgcheck=1
+gpgkey=http://repo.midonet.org/RPM-GPG-KEY-midokura
