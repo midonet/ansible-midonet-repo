@@ -1,2 +1,2 @@
 # ansible-midonet-repo
-Ansible module for midone repos
+Ansible module for midonet repos
