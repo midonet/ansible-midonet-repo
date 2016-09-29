@@ -1,20 +1,27 @@
 [midonet]
 name=MidoNet
-baseurl=http://repo.midonet.org/midonet/v{{ midonet_version }}/RHEL/{{ ansible_distribution_version.split(".")[0] }}/{{ midonet_release | default('stable') }}/
+baseurl={{ midonet_base_url }}/{{ midonet_version }}/{{ midonet_release | default('stable') }}/el{{ ansible_distribution_major_version }}/
 enabled=1
-gpgcheck=1
-gpgkey=http://repo.midonet.org/RPM-GPG-KEY-midokura
+gpgcheck=0
+gpgkey={{ midonet_base_url }}/midorepo.key
 
 [midonet-openstack-integration]
 name=MidoNet OpenStack Integration
-baseurl=http://repo.midonet.org/openstack-{{ openstack_version }}/RHEL/{{ ansible_distribution_version.split(".")[0] }}/{{ plugin_release | default('stable') }}/
+baseurl={{ midonet_base_url }}/openstack-{{ openstack_version }}/{{ plugin_release | default('stable') }}/el{{ ansible_distribution_major_version }}/
 enabled=1
-gpgcheck=1
-gpgkey=http://repo.midonet.org/RPM-GPG-KEY-midokura
+gpgcheck=0
+gpgkey={{ midonet_base_url }}/midorepo.key
 
 [midonet-misc]
 name=MidoNet 3rd Party Tools and Libraries
-baseurl=http://repo.midonet.org/misc/RHEL/{{ ansible_distribution_version.split(".")[0] }}/misc/
+baseurl={{ midonet_base_url }}/misc/stable/el{{ ansible_distribution_major_version }}/
 enabled=1
-gpgcheck=1
-gpgkey=http://repo.midonet.org/RPM-GPG-KEY-midokura
+gpgcheck=0
+gpgkey={{ midonet_base_url }}/midorepo.key
+
+[mem]
+name=MEM
+baseurl={{ mem_base_url }}/{{ midonet_release | default('stable') }}/el{{ ansible_distribution_major_version }}/
+enabled=1
+gpgcheck=0
+gpgkey={{ midonet_base_url }}/midorepo.key
