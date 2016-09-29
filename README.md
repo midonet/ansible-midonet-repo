@@ -15,6 +15,8 @@ midonet_version: "midonet-5.2"
 midonet_release: "stable"
 openstack_version: "mitaka"
 plugin_release: "stable"
+mem_username: # Provide MEM username
+mem_password: # Provide MEM password
 
 Dependencies
 ------------
@@ -33,7 +35,8 @@ Including an example of how to use your role (for instance, with variables passe
            midonet_release: 'stable'
            openstack_version: 'mitaka'
            plugin_release: 'stable'
-
+           mem_username: 'midonet'
+           mem_password: '*******'
 
 License
 -------

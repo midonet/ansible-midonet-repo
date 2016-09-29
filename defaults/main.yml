@@ -7,6 +7,6 @@ openstack_version: "mitaka"
 plugin_release: "stable"
 
 # TODO Hardcoded values for MEM. Update it later.
-mem_username: "calsoft"
-mem_password: "3adfF3cd"
+mem_username: "midonet"
+mem_password: "*******"
 mem_base_url: "http://{{ mem_username }}:{{ mem_password }}@builds.midonet.org/mem-5.2"
