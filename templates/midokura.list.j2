@@ -1,3 +1,4 @@
-deb [arch=amd64] http://repo.midonet.org/midonet/v{{midonet_version}} {{ midonet_release | default('stable') }} main
-deb [arch=amd64] http://repo.midonet.org/openstack-{{openstack_version}} {{ plugin_release | default('stable') }} main
-deb [arch=amd64] http://repo.midonet.org/misc stable main
+deb [arch=amd64] {{ midonet_base_url }}/{{ midonet_version }} {{ midonet_release | default('stable') }} main
+deb [arch=amd64] {{ midonet_base_url }}/openstack-{{openstack_version}} {{ plugin_release | default('stable') }} main
+deb [arch=amd64] {{ midonet_base_url }}/misc stable main
+deb [arch=amd64] {{ mem_base_url }} {{ midonet_release | default('stable') }} main
