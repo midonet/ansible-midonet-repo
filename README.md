@@ -11,12 +11,13 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-midonet_version: "midonet-5.2"
+midonet_version: "5.2"
 midonet_release: "stable"
 openstack_version: "mitaka"
 plugin_release: "stable"
-mem_username: # Provide MEM username
-mem_password: # Provide MEM password
+mem: False
+mem_username: # Provide username if MEM is used
+mem_password: # Provide password if MEM is used
 
 Dependencies
 ------------
@@ -31,17 +32,18 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: servers
       roles:
          - role: ansible-midonet-repo
-           midonet_version: 'midonet-5.2'
+           midonet_version: '5.2'
            midonet_release: 'stable'
            openstack_version: 'mitaka'
            plugin_release: 'stable'
+           mem: False
            mem_username: 'midonet'
            mem_password: '*******'
 
 License
 -------
 
-BSD
+Apache 2.0
 
 Author Information
 ------------------

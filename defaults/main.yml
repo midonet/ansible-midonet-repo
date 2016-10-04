@@ -1,12 +1,11 @@
 ---
 # defaults file for midonet-repo
-midonet_base_url: "http://builds.midonet.org"
-midonet_version: "current"
+midonet_base: "builds.midonet.org"
+midonet_version: "5.2"
 midonet_release: "stable"
 openstack_version: "mitaka"
 plugin_release: "stable"
-
-# TODO Hardcoded values for MEM. Update it later.
+mem: False
 mem_username: "midonet"
-mem_password: "*******"
-mem_base_url: "http://{{ mem_username }}:{{ mem_password }}@builds.midonet.org/mem-5.2"
+mem_password: "supersecret"
+

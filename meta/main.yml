@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  author: Abel Boldú
-  description: Midonet OSS repositories
+  author: Samir Ibradžić
+  description: Midonet repositories
   company: Midokura
   license: Apache
   min_ansible_version: 2.0
