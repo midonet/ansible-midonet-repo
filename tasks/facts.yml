@@ -1,0 +1,18 @@
+---
+
+- name: Set full base URL path for OSS MidoNet repos
+  set_fact:
+    midonet_description: "MidoNet OSS repository"
+    midonet_base: "builds.midonet.org"
+    midonet_base_url: "http://{{ midonet_base }}"
+    midonet_version_dir: "midonet-{{ midonet_version }}"
+  when: not mem
+
+- name: Set full base URL path for OSS MidoNet repos
+  set_fact:
+    midonet_description: "MidoNet MEM repository"
+    midonet_base: "repo.midokura.com"
+    midonet_base_url: "https://{{ mem_username }}:{{ mem_password }}@{{ midonet_base }}"
+    midonet_version_dir: "mem-{{ midonet_version }}"
+  when: mem
+
