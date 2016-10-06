@@ -19,3 +19,8 @@
   when: ansible_distribution_release == 'trusty'
   become: true
 
+- name: apt-get update
+  apt:
+    update_cache: yes
+  retries: 3
+  become: true
