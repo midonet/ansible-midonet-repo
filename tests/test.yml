@@ -1,0 +1,34 @@
+---
+
+- hosts: all
+  become: True
+
+  roles:
+    - ansible-midonet-repo
+
+  post_tasks:
+    - block:
+        - name: 'Check if we can install midolman'
+          yum:
+            name: 'midolman'
+            state: installed
+
+        - name: 'Check if we can install midonet-manager'
+          yum:
+            name: 'midonet-manager'
+            state: installed
+          when: midonet_repo_mem_enabled
+      when: ansible_os_family == 'RedHat'
+
+    - block:
+        - name: 'Check if we can install midolman'
+          apt:
+            name: 'midolman'
+            state: installed
+
+        - name: 'Check if we can install midonet-manager'
+          apt:
+            name: 'midonet-manager'
+            state: installed
+          when: midonet_repo_mem_enabled
+      when: ansible_os_family == 'Debian'

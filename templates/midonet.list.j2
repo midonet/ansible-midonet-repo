@@ -1,0 +1,6 @@
+# {{ midonet_repo_repository_description_prefix }}
+deb {{ midonet_repo_repository_base_url }}/{{ midonet_repo_midonet_dir }} {{ midonet_repo_midonet_release|default('stable') }} main
+# MidoNet OpenStack Integration repository
+deb {{ midonet_repo_repository_base_url }}/openstack-{{ midonet_repo_openstack_plugin_version }} {{ midonet_repo_openstack_plugin_release|default('stable') }} main
+# MidoNet 3rd Party Tools and Libraries repository
+deb {{ midonet_repo_repository_base_url }}/misc stable main

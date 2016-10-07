@@ -1,18 +1,25 @@
 ---
 
-- name: Set full base URL path for OSS MidoNet repos
+- name: Set full base URL path for MidoNet repos
   set_fact:
-    midonet_description: "MidoNet OSS repository"
-    midonet_base: "builds.midonet.org"
-    midonet_base_url: "http://{{ midonet_base }}"
-    midonet_version_dir: "midonet-{{ midonet_version }}"
-  when: not mem
+    midonet_repo_repository_description_prefix: 'MidoNet'
+    midonet_repo_repository_section_prefix: 'midonet'
+    midonet_repo_repository_base_url: 'http://builds.midonet.org'
+    midonet_repo_repository_gpgkey_url: 'https://builds.midonet.org/midorepo.key'
+    midonet_repo_midonet_dir: 'midonet-{{ midonet_repo_midonet_version }}'
+  when: not midonet_repo_mem_enabled
 
-- name: Set full base URL path for OSS MidoNet repos
-  set_fact:
-    midonet_description: "MidoNet MEM repository"
-    midonet_base: "repo.midokura.com"
-    midonet_base_url: "https://{{ mem_username }}:{{ mem_password }}@{{ midonet_base }}"
-    midonet_version_dir: "mem-{{ midonet_version }}"
-  when: mem
+- block:
+    - name: Set full base URL path for MEM repos
+      set_fact:
+        midonet_repo_repository_description_prefix: 'MEM'
+        midonet_repo_repository_section_prefix: 'mem'
+        midonet_repo_repository_base_url: 'http://{{ midonet_repo_mem_username }}:{{ midonet_repo_mem_password }}@repo.midokura.com'
+        midonet_repo_repository_gpgkey_url: 'https://repo.midokura.com/midorepo.key'
+        midonet_repo_midonet_dir: 'mem-{{ midonet_repo_midonet_version }}'
 
+    - assert:
+        that:
+          - midonet_repo_mem_username is defined
+          - midonet_repo_mem_password is defined
+  when: midonet_repo_mem_enabled

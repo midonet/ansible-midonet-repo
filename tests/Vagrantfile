@@ -1,0 +1,66 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+######################################################################
+
+def start(config, name, box_libvirt, box_virtualbox, extra_provisioners=[])
+  config.vm.define name do |node|
+    node.vm.provider :libvirt do |libvirt, libvirt_node|
+      libvirt_node.vm.box = box_libvirt
+    end
+
+    node.vm.provider :virtualbox do |virtualbox, virtualbox_node|
+      virtualbox_node.vm.box = box_virtualbox
+    end
+
+    node.vm.hostname = name
+
+    if not extra_provisioners.empty? then
+      for extra_provisioner in extra_provisioners do
+        extra_provisioner.call(node)
+      end
+    end
+
+    node.vm.provision :ansible do |ansible|
+      ansible.playbook = "test.yml"
+    end
+  end
+end
+
+def set_hardware(config, provider)
+  config.vm.provider provider do |machine|
+    machine.memory = 2048
+    machine.cpus = 1
+  end
+end
+
+def fix_sudoers(node)
+  node.vm.provision :shell,
+    inline: "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/vagrant"
+end
+
+def install_python_ubuntu(node)
+  node.vm.provision :shell,
+    inline: "apt-get update && apt-get install -y python"
+end
+
+######################################################################
+
+Vagrant.configure(2) do |config|
+  set_hardware config, :libvirt
+  set_hardware config, :virtualbox
+
+  start config,
+        "ubuntu-trusty",
+        "sputnik13/trusty64",
+        "ubuntu/trusty64",
+        [method(:fix_sudoers)]
+
+  start config,
+        "ubuntu-xenial",
+        "yk0/ubuntu-xenial",
+        "ubuntu/xenial64",
+        [method(:install_python_ubuntu)]
+
+  start config, "centos-7", "centos/7", "centos/7"
+end

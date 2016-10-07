@@ -1,26 +1,22 @@
 ---
 
-- name: Add Midokura repos
+- name: Add repository file for apt
   template:
-    src: midokura.list.j2
-    dest: /etc/apt/sources.list.d/midokura.list
-  become: true
+    dest: '/etc/apt/sources.list.d/midonet.list'
+    group: 'root'
+    mode: 0644
+    owner: 'root'
+    src: 'midonet.list.j2'
 
 - name: Add Midokura repos key
   apt_key:
-    url: "https://{{ midonet_base }}/midorepo.key"
-  retries: 3
-  become: true
+    url: '{{ midonet_repo_repository_gpgkey_url }}'
 
 - name: Add OpenJDK 8 ppa repository
   apt_repository:
-    repo: "ppa:openjdk-r/ppa"
-  retries: 3
+    repo: 'ppa:openjdk-r/ppa'
   when: ansible_distribution_release == 'trusty'
-  become: true
 
 - name: apt-get update
   apt:
     update_cache: yes
-  retries: 3
-  become: true
