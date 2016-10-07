@@ -1,7 +1,9 @@
 ---
 
-- name: Add Midokura repos
+- name: Add repository file for yum
   template:
-    src: midokura.repo.j2
-    dest: /etc/yum.repos.d/midokura.repo
-  become: true
+    dest: '/etc/yum.repos.d/midonet.repo'
+    group: 'root'
+    mode: 0644
+    owner: 'root'
+    src: 'midonet.repo.j2'

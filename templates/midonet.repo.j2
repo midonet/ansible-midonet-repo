@@ -1,0 +1,20 @@
+[{{ midonet_repo_repository_section_prefix }}]
+name={{ midonet_repo_repository_description_prefix }}
+baseurl={{ midonet_repo_repository_base_url }}/{{ midonet_repo_midonet_dir }}/{{ midonet_repo_midonet_release|default('stable') }}/el{{ ansible_distribution_major_version }}/
+enabled=1
+gpgcheck=1
+gpgkey={{ midonet_repo_repository_gpgkey_url }}
+
+[midonet-openstack-integration]
+name=MidoNet OpenStack Integration
+baseurl={{ midonet_repo_repository_base_url }}/openstack-{{ midonet_repo_openstack_plugin_version }}/{{ midonet_repo_openstack_plugin_release|default('stable') }}/el{{ ansible_distribution_major_version }}/
+enabled=1
+gpgcheck=1
+gpgkey={{ midonet_repo_repository_gpgkey_url }}
+
+[midonet-misc]
+name=MidoNet 3rd Party Tools and Libraries
+baseurl={{ midonet_repo_repository_base_url }}/misc/stable/el{{ ansible_distribution_major_version }}/
+enabled=1
+gpgcheck=1
+gpgkey={{ midonet_repo_repository_gpgkey_url }}
