@@ -32,14 +32,14 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: servers
       roles:
          - role: ansible-midonet-repo
-           midonet_version: '5.2'
-           midonet_release: 'stable'
-           openstack_version: 'mitaka'
-           plugin_release: 'stable'
-           mem: False
-           mem_username: 'midonet'
-           mem_password: '*******'
-
+           midonet_repo_midonet_version: '5.2'
+           midonet_repo_midonet_release: 'stable'
+           midonet_repo_openstack_plugin_version: 'mitaka'
+           midonet_repo_openstack_plugin_release: 'stable'
+           midonet_repo_mem_enabled: True
+           midonet_repo_mem_username: 'midonet'
+           midonet_repo_mem_password: '*******'
+           
 License
 -------
 
